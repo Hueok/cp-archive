@@ -1,0 +1,12 @@
+use std::io::{self, Read};
+
+fn main() {
+    let mut input = String::new();
+    io::stdin().read_to_string(&mut input).unwrap();
+    let mut it = input.split_whitespace();
+
+    let _N: usize = it.next().unwrap().parse().unwrap();
+    let _M: usize = it.next().unwrap().parse().unwrap();
+
+    
+}
