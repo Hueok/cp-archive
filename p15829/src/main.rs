@@ -8,34 +8,21 @@ fn main() {
     io::stdin().read_to_string(&mut input).unwrap();
     let mut it = input.split_whitespace();
 
-    let _L: usize = it.next().unwrap().parse().unwrap();
+    let _l: usize = it.next().unwrap().parse().unwrap();
+    let s = it.next().unwrap();
 
-    let unistring: Vec<char> = it.next().unwrap().chars().collect();
+    let (_, result) = s.chars().fold((1_i64, 0_i64), |(pow, acc), c| {
+        let val = (ctoi(c) * pow) % P;
+        let new_pow = (pow * R) % P;
+        let new_acc = (acc + val) % P;
+        (new_pow, new_acc)
+    });
 
-    let mut sum: i64 = 0;
+    println!("{}", result);
 
-    for (i, &alp) in unistring.iter().enumerate() {
-        // sum += ctoi(alp) * R.pow(i as u32) % P;
-        sum += (ctoi(alp) * modular_loop(i as u32)) % P;
-    }
-
-    println!("{}", sum);
 }
 
 fn ctoi(c: char) -> i64 {
     (c as u8 - b'a') as i64 + 1
-}
-fn modular_loop(exp: u32) -> i64{
-    if exp == 0 {
-        return 1;
-    }
-    if exp == 1 {
-        return R;
-    }
-    let mut acc = R;
-    for i in 2..=exp {
-        acc = (acc * R) % P;
-    }
-    acc
 }
 
