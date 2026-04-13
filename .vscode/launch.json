@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+    "name": "Debug p11050",
+    "type": "lldb",
+    "request": "launch",
+
+    "program": "${workspaceFolder}/p11050/target/debug/p11050",
+    "cwd": "${workspaceFolder}/p11050",
+
+    "args": []
+    }
+  ]
+}

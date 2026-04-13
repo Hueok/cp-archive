@@ -8,14 +8,18 @@ fn main() {
     let n: usize = it.next().unwrap().parse().unwrap();
     let k: usize = it.next().unwrap().parse().unwrap();
 
-    let mut dp = vec![0; k+1];
-    dp[0] = 1;
+    let mut dp: Vec<i32> = vec![0; k+1];
+    // 1D DP with overwrap
+
     for i in 1..=n{
-        for j in (1..=k).rev(){
-            dp[j] += dp[j-1];
+        for j in (0..=k.min(i)).rev(){
+            if i==j || j==0{
+                dp[j] = 1;
+                continue;
+            }
+            dp[j] = dp[j] + dp[j-1];
         }
     }
-
     println!("{}", dp[k]);
 
     
