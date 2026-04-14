@@ -1,5 +1,6 @@
 use std::io::{self, Read, BufWriter, Write};
 use std::cmp::Ordering;
+use std::collections::HashSet;
 
 fn main() {
     let mut writer = BufWriter::new(io::stdout().lock());
@@ -9,14 +10,20 @@ fn main() {
     let mut it = input.split_whitespace();
     let n: usize = it.next().unwrap().parse().unwrap();
 
-    let mut words: Vec<&str> = it.collect();
-    quicksort(&mut words, 0, n-1);
+    let words: Vec<&str> = it.collect();
 
-    for s in words.iter(){
-        writeln!(writer, "{}", s);
+    let mut seen = HashSet::new();
+    let mut unique: Vec<_> = words.into_iter()
+        .filter(|x| seen.insert(*x))
+        .collect();
+
+    let len = unique.len();
+
+    quicksort(&mut unique, 0, len-1);
+
+    for s in unique.iter(){
+        let _ = writeln!(writer, "{}", s);
     }
-
-    
 }
 
 fn quicksort(arr: &mut [&str], left: usize, right: usize){
