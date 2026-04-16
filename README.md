@@ -6,7 +6,7 @@ This repository is dedicated to practicing problem solving (PS), studying algori
 
 Problems are solved from the following platforms:
 
-* Baekjoon
+* Baekjoon (Expired)
 * Programmers
 * LeetCode
 
