@@ -2,20 +2,12 @@ pub struct Solution;
 
 impl Solution {
     pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
-        use std::collections::HashMap;
-        let mut count: HashMap<i32, i32> = HashMap::new();
-
         let mut i = 0;
         for j in 0..nums.len(){
-            if !count.contains_key(&nums[j]){
-                count.insert(nums[j], 0);
+            if i==0 || i==1 || nums[i-2] != nums[j] {
+                nums[i] = nums[j];
+                i += 1;
             }
-            if *(count.get(&nums[j]).unwrap()) == 2{
-                continue;
-            }
-            *(count.get_mut(&nums[j]).unwrap()) += 1;
-            nums[i] = nums[j];
-            i += 1;
         }
         i as i32
     }
