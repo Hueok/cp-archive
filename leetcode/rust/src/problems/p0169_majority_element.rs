@@ -4,17 +4,7 @@ impl Solution {
     pub fn majority_element(nums: Vec<i32>) -> i32 {
         let mut arr: Vec<i32> = nums.clone();
         arr.sort_unstable();
-        let mut i =0;
-        let mut major = 0;
-        let n = (arr.len() / 2) as usize;
-        loop{
-            if arr[i] == arr[i+n] {
-                major = arr[i];
-                break;
-            }
-            i+=1
-        }
-        major
+        arr[arr.len()/2]
     }
 }
 

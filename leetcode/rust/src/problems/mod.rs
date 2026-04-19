@@ -1,1 +1,1 @@
-pub mod p0169_majority_element;
+pub mod p0121_best_time_buy_stock;
