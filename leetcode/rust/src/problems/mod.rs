@@ -1,1 +1,1 @@
-pub mod p0014_longest_common_prefix;
+pub mod p0125_palindrome;
