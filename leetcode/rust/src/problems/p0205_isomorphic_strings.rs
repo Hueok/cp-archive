@@ -2,15 +2,28 @@ pub struct Solution;
 
 impl Solution {
     pub fn is_isomorphic(s: String, t: String) -> bool {
+        use std::collections::HashMap;
 
-        let s = s.as_bytes();
-        let t = t.as_bytes();
-        
-        let diff: i32 = s[0] as i32 -t[0] as i32;
-        
-        for i in 1..s.len() {
-            if s[i] as i32 - t[i] as i32 != diff {
-                return false;
+        let s: Vec<char> = s.chars().collect();
+        let t: Vec<char> = t.chars().collect();
+
+        let mut dict = HashMap::new();
+        let mut used = [false; 129];
+
+        for i in 0..s.len() {
+            if let Some(v) = dict.get_mut(&s[i]) {
+                // s -> t character already used
+                if *v != t[i] {
+                    return false;
+                }
+            } else{
+                // s -> t first time mapping
+                if used[t[i] as usize] {
+                    // t domain already mapped
+                    return false;
+                }
+                dict.insert(s[i], t[i]);
+                used[t[i] as usize] = true;
             }
         }
         return true;
