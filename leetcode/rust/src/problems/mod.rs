@@ -1,1 +1,1 @@
-pub mod p0205_isomorphic_strings;
+pub mod p0290_word_pattern;
