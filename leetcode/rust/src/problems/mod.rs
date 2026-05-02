@@ -1,1 +1,1 @@
-pub mod p0242_valid_anagram;
+pub mod p0001_two_sum;
